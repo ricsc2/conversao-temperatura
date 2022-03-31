@@ -1,0 +1,38 @@
+#Deployment da aplicação web Conversão de Temperatura
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: conv-temp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: conv-temp
+  template:
+    metadata:
+      labels:
+        app: conv-temp
+    spec:
+      containers:
+        - name: conv-temp
+          image: ricsc2/conversao-temperatura:v1
+          ports:
+            - containerPort: 8080
+
+---
+
+#Service da aplicação web Conversão de Temperatura
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: conv-temp
+spec:
+  selector:
+    app: conv-temp
+  ports:
+    - protocol: TCP
+      port: 8080
+      nodePort: 30000
+  type: NodePort
