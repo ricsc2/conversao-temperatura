@@ -39,5 +39,5 @@ jobs:
           push: true
           tags: |
             ricsc2/conversao-temperatura:latest
-            ricsc2/conversao-temperatura:${{ github.run_number }}
+            ricsc2/conversao-temperatura:v${{ github.run_number }}
           
